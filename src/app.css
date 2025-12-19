@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary Color Palette - Professional Teal/Blue */
+  --color-primary: #0d9488; /* Teal 600 */
+  --color-primary-dark: #0f766e; /* Teal 700 */
+  --color-primary-light: #14b8a6; /* Teal 500 */
+  --color-primary-bg: #f0fdfa; /* Teal 50 */
+
+  /* Secondary Color Palette - Warm Accent */
+  --color-secondary: #f59e0b; /* Amber 500 */
+  --color-secondary-dark: #d97706; /* Amber 600 */
+  --color-secondary-light: #fbbf24; /* Amber 400 */
+
+  /* Neutral Grays */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Status Colors */
+  --color-success: #10b981; /* Green 500 */
+  --color-error: #ef4444; /* Red 500 */
+  --color-warning: #f59e0b; /* Amber 500 */
+
+  /* Background */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f9fafb;
+}
