@@ -33,7 +33,7 @@
   </p>
 {:else}
   <div class="space-y-3">
-    <div class="flex flex-col gap-2 md:flex-row md:items-end">
+    <div class="flex flex-col gap-2 md:flex-row md:items-start">
       <div class="flex-1">
         <label
           for="monthlyRevenue"
