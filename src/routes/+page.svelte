@@ -186,7 +186,7 @@
   <meta name="description" content={pageDescription} />
 </svelte:head>
 
-<main class=" min-h-[80vh] flex justify-center items-center py-20">
+<main class=" min-h-[80vh] flex justify-center items-center pt-15">
   <div id="audit" class="flex justify-center items-center">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto">
@@ -196,13 +196,13 @@
             alt="Logo"
             class="mx-auto mb-6 max-w-[180px] h-auto"
           />
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
-            SEO Audit for Shopify
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#26363f]">
+            Better Shopify SEO, Simplified.
           </h1>
           <p class="text-xl text-[#26363f] max-w-3xl mx-auto">
-            Drop in your Shopify store URL and get a high-level audit of your
-            store's health – SEO, conversion, operational data, and hidden
-            opportunities.
+            Just enter your URL to receive a roadmap to higher rankings and more
+            sales. Uncover the hidden technical errors holding your Shopify
+            store back.
           </p>
         </div>
 
@@ -410,10 +410,11 @@
                     Running audit...
                   </span>
                 {:else}
-                  Run Audit
+                  Audit My Store
                 {/if}
               </button>
             </div>
+
             {#if submitting}
               <div class="mt-4">
                 <div class="flex items-center justify-between mb-2">
@@ -435,18 +436,132 @@
               </div>
             {/if}
             <p class="mt-4 text-xs text-[#26363f]/80 text-left ml-[2px]">
-              We only read your public
-              <code class="px-1 py-0.5 rounded bg-white text-black border"
-                >/products.json</code
-              >
-              and
-              <code class="px-1 py-0.5 rounded bg-white text-black border"
-                >/meta.json</code
-              >
-              endpoints. No admin access or private data is used.
+              🔒 Safe & Secure: We only analyze public data. No password, admin
+              access, or private store data is ever required.
             </p>
+            <div class="mt-4 flex justify-center">
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-sm text-[#26363f]/70 border border-gray-200"
+              >
+                <svg
+                  class="w-4 h-4 text-[#00a979]"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="font-medium">5,000+ Audits Completed</span>
+              </span>
+            </div>
           </div>
         </form>
+
+        <!-- What You Get Section -->
+        <section class="mt-12 mb-10">
+          <h2
+            class="text-2xl md:text-3xl font-semibold text-center text-[#26363f] mb-8"
+          >
+            What You Get
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <!-- Technical SEO Score -->
+            <div
+              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-center mb-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-[#00a979]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                Technical SEO Score
+              </h3>
+              <p class="text-sm text-[#26363f]/80">
+                Uncover hidden errors in your metadata and site structure.
+              </p>
+            </div>
+
+            <!-- Conversion Optimization -->
+            <div
+              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-center mb-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-[#00a979]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                Conversion Optimization
+              </h3>
+              <p class="text-sm text-[#26363f]/80">
+                Identify why customers are leaving without buying.
+              </p>
+            </div>
+
+            <!-- Instant Results -->
+            <div
+              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-center mb-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-[#00a979]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                Instant Results
+              </h3>
+              <p class="text-sm text-[#26363f]/80">
+                Get your full report in under 60 seconds.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {#if form?.report}
           {#await Promise.resolve(form.report) then report}
