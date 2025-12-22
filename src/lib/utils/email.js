@@ -32,6 +32,7 @@ export async function sendAuditEmails({
 
   const fromEmail =
     env.AUDIT_FROM_EMAIL || "Audit Report <onboarding@resend.dev>";
+  // Use this as the primary Stripe checkout / upgrade URL.
   const bookingUrl = env.AUDIT_BOOKING_URL || "https://willmisback.com/contact";
 
   const score = Math.round(report.summary.overallScore);
@@ -60,7 +61,7 @@ export async function sendAuditEmails({
       <p><strong>Grade:</strong> ${score}/100 (${grade})</p>
       <p>${label}</p>
       <p>
-        When you're ready, you can book a fix call here:
+        When you're ready, you can fix these catalog issues here:
         <a href="${bookingUrl}">${bookingUrl}</a>.
       </p>
       <p>— Will</p>

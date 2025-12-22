@@ -285,7 +285,8 @@ export async function createAuditWorkbook({
   const summarySheet = workbook.addWorksheet("Summary");
 
   const agencyName = agency.name || "Your Agency";
-  const bookingUrl = agency.bookingUrl || agency.website || storeUrl;
+  // Treat the configured booking URL as the primary Stripe checkout / upgrade URL.
+  const checkoutUrl = agency.bookingUrl || agency.website || storeUrl;
 
   summarySheet.columns = [
     { header: "Label", key: "label", width: 25 },
@@ -302,8 +303,8 @@ export async function createAuditWorkbook({
   summarySheet.mergeCells("A3:B3");
   const ctaCell = summarySheet.getCell("A3");
   ctaCell.value = {
-    text: "Book a Fix",
-    hyperlink: bookingUrl,
+    text: "Fix these catalog issues",
+    hyperlink: checkoutUrl,
   };
   ctaCell.font = { size: 14, bold: true, color: { argb: "FF1D4ED8" } };
   ctaCell.alignment = { vertical: "middle", horizontal: "center" };
@@ -333,9 +334,6 @@ export async function createAuditWorkbook({
     ["Audit Date", dateString],
     ["Total Products Audited", report.summary.totalProducts],
     ["Total Issues (sum of counts)", report.summary.totalIssues],
-    ["Agency Email", agency.email || ""],
-    ["Agency Website", agency.website || ""],
-    ["Booking URL", bookingUrl || ""],
   ];
 
   for (const [label, value] of rows) {

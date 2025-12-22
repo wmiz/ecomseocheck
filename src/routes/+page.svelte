@@ -468,108 +468,112 @@
           </div>
         </form>
 
-        <!-- What You Get Section -->
-        <section class="mt-12 mb-10">
-          <h2
-            class="text-2xl md:text-3xl font-semibold text-center text-[#26363f] mb-8"
-          >
-            What You Get
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <!-- Technical SEO Score -->
-            <div
-              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+        {#if !form?.report}
+          <!-- What You Get Section (only shown before audit completes) -->
+          <section class="mt-12 mb-10">
+            <h2
+              class="text-2xl md:text-3xl font-semibold text-center text-[#26363f] mb-8"
             >
-              <div class="flex justify-center mb-4">
-                <div
-                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
-                >
-                  <svg
-                    class="w-6 h-6 text-[#00a979]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              What You Get
+            </h2>
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            >
+              <!-- Technical SEO Score -->
+              <div
+                class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div class="flex justify-center mb-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
+                    <svg
+                      class="w-6 h-6 text-[#00a979]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </div>
                 </div>
+                <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                  Technical SEO Score
+                </h3>
+                <p class="text-sm text-[#26363f]/80">
+                  Uncover hidden errors in your metadata and site structure.
+                </p>
               </div>
-              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
-                Technical SEO Score
-              </h3>
-              <p class="text-sm text-[#26363f]/80">
-                Uncover hidden errors in your metadata and site structure.
-              </p>
-            </div>
 
-            <!-- Conversion Optimization -->
-            <div
-              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div class="flex justify-center mb-4">
-                <div
-                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
-                >
-                  <svg
-                    class="w-6 h-6 text-[#00a979]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              <!-- Conversion Optimization -->
+              <div
+                class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div class="flex justify-center mb-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                    <svg
+                      class="w-6 h-6 text-[#00a979]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                  </div>
                 </div>
+                <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                  Conversion Optimization
+                </h3>
+                <p class="text-sm text-[#26363f]/80">
+                  Identify why customers are leaving without buying.
+                </p>
               </div>
-              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
-                Conversion Optimization
-              </h3>
-              <p class="text-sm text-[#26363f]/80">
-                Identify why customers are leaving without buying.
-              </p>
-            </div>
 
-            <!-- Instant Results -->
-            <div
-              class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div class="flex justify-center mb-4">
-                <div
-                  class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
-                >
-                  <svg
-                    class="w-6 h-6 text-[#00a979]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              <!-- Instant Results -->
+              <div
+                class="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div class="flex justify-center mb-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-[#00a979]/10 flex items-center justify-center"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                    <svg
+                      class="w-6 h-6 text-[#00a979]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
                 </div>
+                <h3 class="text-lg font-semibold text-[#26363f] mb-2">
+                  Instant Results
+                </h3>
+                <p class="text-sm text-[#26363f]/80">
+                  Get your full report in under 60 seconds.
+                </p>
               </div>
-              <h3 class="text-lg font-semibold text-[#26363f] mb-2">
-                Instant Results
-              </h3>
-              <p class="text-sm text-[#26363f]/80">
-                Get your full report in under 60 seconds.
-              </p>
             </div>
-          </div>
-        </section>
+          </section>
+        {/if}
 
         {#if form?.report}
           {#await Promise.resolve(form.report) then report}
