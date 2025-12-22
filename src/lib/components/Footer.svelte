@@ -25,6 +25,12 @@
           >
             Changelog (v1.0)
           </a>
+          <a
+            href="/guarantee"
+            class="text-dark hover:text-primary-500 transition-colors"
+          >
+            Satisfaction Guarantee
+          </a>
         </div>
         <div class="text-center md:text-right">
           <span class="text-dark">

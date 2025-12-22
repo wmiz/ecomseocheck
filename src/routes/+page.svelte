@@ -124,7 +124,7 @@
     return `Occurs when ${first}${desc.slice(1)}`;
   };
 
-  const pageTitle = "Shopify Product Catalog Health Audit";
+  const pageTitle = "Shopify Store Health Audit";
   const pageDescription =
     "Run a free Shopify product catalog health audit. Check SEO, conversion, data integrity, and hidden upsell opportunities using only your public /products.json feed.";
 
@@ -579,7 +579,7 @@
           {#await Promise.resolve(form.report) then report}
             <div class="space-y-10">
               <section
-                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-8"
               >
                 <div
                   class="flex flex-col items-center text-center md:flex-row md:items-start md:justify-between md:text-left gap-4 mb-4"
@@ -602,9 +602,6 @@
                         </div>
                       </div>
                     {/if}
-                    <h2 class="text-2xl font-semibold mb-2 text-[#26363f]">
-                      Your Growth Blueprint
-                    </h2>
                     <p class="text-base text-[#26363f] font-medium mb-1">
                       We scanned {report.summary.totalProducts} products and identified
                       {report.summary.totalIssues} specific improvements to boost
@@ -639,7 +636,7 @@
                   class="flex flex-wrap justify-center md:justify-start gap-4"
                 >
                   <div
-                    class="flex-1 min-w-[160px] bg-[#ffffff] rounded-lg border border-gray-200 p-4 text-center md:text-left"
+                    class="flex-1 min-w-[160px] bg-[#ffffff] rounded-lg text-center md:text-left"
                   >
                     <div
                       class="text-xs uppercase tracking-wide text-gray-500 mb-1"
@@ -651,7 +648,7 @@
                     </div>
                   </div>
                   <div
-                    class="flex-1 min-w-[160px] bg-[#ffffff] rounded-lg border border-gray-200 p-4 text-center md:text-left"
+                    class="flex-1 min-w-[160px] bg-[#ffffff] rounded-lg text-center md:text-left"
                   >
                     <div
                       class="text-xs uppercase tracking-wide text-gray-500 mb-1"
@@ -666,7 +663,7 @@
 
                 {#if form?.uplift}
                   <div
-                    class="mt-8 bg-gradient-to-br from-[#00a979]/5 to-[#00a979]/10 rounded-xl border-2 border-[#00a979]/30 p-8 shadow-lg"
+                    class="mt-8 bg-gradient-to-br from-[#00a979]/5 to-[#00a979]/10 rounded-xl border-2 border-[#00a979]/30 p-8"
                   >
                     <div class="text-center mb-6">
                       <div
@@ -681,7 +678,7 @@
                           form.uplift.maxPercent * 100
                         )}%
                       </div>
-                      <div class="text-xl font-semibold text-[#26363f]">
+                      <div class="text-2xl font-semibold text-[#26363f]">
                         Revenue Lift
                       </div>
                     </div>
@@ -738,10 +735,10 @@
 
               {#each report.sections as section}
                 <section
-                  class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
+                  class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-8"
                 >
                   <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-semibold text-[#26363f]">
+                    <h2 class="text-2xl font-semibold text-[#26363f]">
                       {section.title}
                     </h2>
                     <span class="text-xs uppercase tracking-wide text-gray-500">
@@ -749,48 +746,35 @@
                     </span>
                   </div>
 
-                  <div class="grid gap-4 md:grid-cols-2">
+                  <div class="grid gap-8 md:grid-cols-2">
                     {#each section.issues as issue}
                       {@const hasIssues = (issue.count || 0) > 0}
-                      <div
-                        class="bg-[#ffffff] rounded-lg border border-gray-200 p-4"
-                      >
-                        {#if hasIssues}
-                          <div
-                            class="flex w-full items-start justify-between mb-2"
-                          >
-                            <div class="flex items-start gap-2">
-                              <h3 class="text-lg font-semibold text-[#26363f]">
-                                {issue.label}
-                              </h3>
-                              <span
-                                class="ml-2 inline-flex items-center justify-center text-center rounded-full px-2 py-0.5 text-[11px] font-medium
-                                  {issue.severity === 'critical'
-                                  ? 'bg-red-500/15 text-red-600'
-                                  : issue.severity === 'warning'
-                                    ? 'bg-amber-500/15 text-amber-600'
-                                    : 'bg-blue-500/15 text-blue-600'}"
-                              >
-                                {issue.severity}
-                              </span>
-                            </div>
-                          </div>
-                        {:else}
-                          <div
-                            class="flex w-full items-start justify-between mb-2"
-                          >
-                            <div class="flex items-start gap-2">
-                              <h3 class="text-lg font-semibold text-[#26363f]">
-                                {issue.label}
-                              </h3>
-                              <span
-                                class="ml-2 inline-flex items-center justify-center text-center rounded-full px-2 py-0.5 text-[11px] font-medium bg-[#00a979]/10 text-[#008a65] border border-[#00a979]/40"
-                              >
-                                No issues detected
-                              </span>
-                            </div>
-                          </div>
-                        {/if}
+                      <div class="bg-[#ffffff] rounded-lg">
+                        <div
+                          class="flex w-full items-start justify-between mb-2"
+                        >
+                          <h3 class="text-lg font-semibold text-[#26363f]">
+                            {issue.label}
+                          </h3>
+                          {#if hasIssues}
+                            <span
+                              class="inline-flex items-center justify-center text-center rounded-full px-2 py-0.5 text-[11px] font-medium
+                                {issue.severity === 'critical'
+                                ? 'bg-red-500/15 text-red-600'
+                                : issue.severity === 'warning'
+                                  ? 'bg-amber-500/15 text-amber-600'
+                                  : 'bg-blue-500/15 text-blue-600'}"
+                            >
+                              {issue.severity}
+                            </span>
+                          {:else}
+                            <span
+                              class="inline-flex items-center justify-center text-center rounded-full px-2 py-0.5 text-[11px] font-medium bg-[#00a979]/10 text-[#008a65] border border-[#00a979]/40"
+                            >
+                              No issues detected
+                            </span>
+                          {/if}
+                        </div>
 
                         <p class="text-sm text-[#26363f] mb-3">
                           {getIssueDescription(issue)}
@@ -873,11 +857,11 @@
               <!-- Download full audit CTA + gated form -->
               <section
                 id="download-audit"
-                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-8"
               >
                 <div>
                   <h2 class="text-2xl font-semibold text-[#26363f]">
-                    Claim Your Complete Catalog Spreadsheet
+                    Download Your Complete Report
                   </h2>
                   <p class="mt-1 text-xs text-[#26363f]/80">
                     No credit card, no trials, no upsell required—this
@@ -1036,7 +1020,7 @@
                     </div>
                   {/if}
 
-                  <div class="grid gap-4 md:grid-cols-2">
+                  <div class="grid gap-8 md:grid-cols-2">
                     <div class="md:col-span-1">
                       <label
                         for="auditEmail"
@@ -1068,9 +1052,8 @@
                           for="auditConsent"
                           class="ml-2 text-sm text-[#26363f] cursor-pointer"
                         >
-                          Send me the full spreadsheet <span
-                            class="font-semibold">(100% free)</span
-                          > and occasional Shopify growth tips. No spam, ever.
+                          Send me the full spreadsheet and occasional Shopify
+                          growth tips. No spam, ever.
                         </label>
                       </div>
                     </div>
@@ -1122,14 +1105,14 @@
               <!-- Done-for-you implementation offer -->
               <section
                 id="done-for-you"
-                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-8"
               >
                 <div
                   class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
                 >
                   <div>
                     <h2 class="text-2xl font-semibold text-[#26363f] mb-2">
-                      We’ll fix everything for you
+                      Busy? We’ll fix everything for you
                     </h2>
                     <p class="text-sm text-[#26363f]/80 mb-3">
                       Don’t have the time or team to work through this audit?
@@ -1166,10 +1149,29 @@
                       Fix My Catalog For Me
                     </a>
 
-                    <p class="text-xs text-[#26363f]/70 mt-3">
-                      Most stores are fully cleaned up within 72 hours of
-                      kickoff.
-                    </p>
+                    <div class="mt-2 flex justify-center">
+                      <a
+                        href="/guarantee"
+                        class="inline-flex items-center gap-2 text-xs font-semibold text-[#26363f] tracking-wide hover:text-[#00a979] transition-colors"
+                      >
+                        <svg
+                          class="h-4 w-4 text-[#00a979] flex-shrink-0"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                          />
+                          <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>100% satisfaction guarantee</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </section>
