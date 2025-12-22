@@ -194,8 +194,16 @@
           <img
             src={logo}
             alt="Logo"
-            class="mx-auto mb-6 max-w-[180px] h-auto"
+            class="mx-auto mb-2 max-w-[200px] h-auto"
           />
+          <a
+            href="https://willmisback.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block text-sm text-[#6b7280] mb-4 hover:text-[#374151]"
+          >
+            by Misback Consulting
+          </a>
           <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
             Better Shopify SEO, Simplified.
           </h1>
@@ -663,7 +671,7 @@
                         Opportunity Score
                       </div>
                       <div
-                        class="text-6xl md:text-7xl font-bold text-[#00a979] mb-2 leading-none"
+                        class="text-5xl md:text-6xl font-bold text-[#00a979] mb-2 leading-none"
                       >
                         +{Math.round(form.uplift.minPercent * 100)}–{Math.round(
                           form.uplift.maxPercent * 100
@@ -704,21 +712,23 @@
                   </div>
                 {/if}
                 <div class="mt-6 flex justify-center">
-                  <button
-                    type="button"
-                    class="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-base font-semibold cursor-pointer shadow-sm"
-                    onclick={() => {
-                      const el = document.getElementById("download-audit");
-                      if (el) {
-                        el.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start",
-                        });
-                      }
-                    }}
-                  >
-                    Download full audit
-                  </button>
+                  <div class="flex flex-wrap gap-3 justify-center">
+                    <button
+                      type="button"
+                      class="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-base font-semibold cursor-pointer shadow-sm"
+                      onclick={() => {
+                        const el = document.getElementById("download-audit");
+                        if (el) {
+                          el.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        }
+                      }}
+                    >
+                      Download full audit
+                    </button>
+                  </div>
                 </div>
               </section>
 
@@ -862,13 +872,25 @@
                 class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
               >
                 <div>
-                  <h2 class="text-xl font-semibold text-[#26363f]">
+                  <h2 class="text-2xl font-semibold text-[#26363f]">
                     Claim Your Complete Catalog Spreadsheet
                   </h2>
+                  <p class="mt-1 text-xs text-[#26363f]/80">
+                    No credit card, no trials, no upsell required—this
+                    spreadsheet is completely free.
+                  </p>
                   <ul class="mt-2 text-sm text-[#26363f] space-y-1">
-                    <li>✅ Row-by-row fix list for all 481 issues.</li>
-                    <li>✅ Pre-formatted for easy Shopify bulk-editing.</li>
-                    <li>✅ Prioritized by revenue impact.</li>
+                    <li>
+                      ✅ Row-by-row fix list for <span class="font-bold"
+                        >all {report.summary.totalIssues} issues.</span
+                      >
+                    </li>
+                    <li>
+                      ✅ Direct linking to Shopify admin for easy editing.
+                    </li>
+                    <li>
+                      ✅ Ready to share with your team, agency, or developer.
+                    </li>
                   </ul>
                 </div>
 
@@ -1042,12 +1064,15 @@
                           for="auditConsent"
                           class="ml-2 text-sm text-[#26363f] cursor-pointer"
                         >
-                          Send me the full spreadsheet and occasional Shopify
-                          growth tips. No spam, ever.
+                          Send me the full spreadsheet <span
+                            class="font-semibold">(100% free)</span
+                          > and occasional Shopify growth tips. No spam, ever.
                         </label>
                       </div>
                     </div>
-                    <div class="md:col-span-1 flex items-center md:justify-end">
+                    <div
+                      class="md:col-span-1 flex flex-col items-center md:items-end md:justify-end"
+                    >
                       <button
                         type="submit"
                         class="inline-flex items-center justify-center px-6 py-3 text-base rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1058,9 +1083,13 @@
                         {#if downloadSubmitting}
                           Generating...
                         {:else}
-                          DOWNLOAD
+                          DOWNLOAD FREE SPREADSHEET
                         {/if}
                       </button>
+                      <p class="mt-2 text-[11px] text-[#26363f]/70">
+                        The catalog spreadsheet is free. Optional done-for-you
+                        cleanup is a separate $499 service.
+                      </p>
                     </div>
                   </div>
                   {#if downloadSubmitting}
@@ -1123,17 +1152,19 @@
                     <div class="text-4xl font-bold text-[#00a979] mb-3">
                       $499
                     </div>
+
                     <a
-                      href="https://buy.stripe.com/test_placeholder"
+                      href="https://buy.stripe.com/14AbJ34vwatMdqt7BOb7y00"
                       class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-sm hover:shadow-md transition"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Fix My Catalog For Me
                     </a>
-                    <p class="mt-2 text-xs text-[#26363f]/70">
-                      Placeholder Stripe link – swap with your live checkout URL
-                      when ready.
+
+                    <p class="text-xs text-[#26363f]/70 mt-3">
+                      Most stores are fully cleaned up within 72 hours of
+                      kickoff.
                     </p>
                   </div>
                 </div>

@@ -1,6 +1,9 @@
 <svelte:head>
   <title>Changelog - ESC</title>
-  <meta name="description" content="Product changelog and release history for ESC." />
+  <meta
+    name="description"
+    content="Product changelog and release history for ESC."
+  />
 </svelte:head>
 
 <main class="container mx-auto px-4 py-12 max-w-3xl">
@@ -16,5 +19,3 @@
     </ul>
   </section>
 </main>
-
-
