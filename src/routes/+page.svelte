@@ -196,7 +196,7 @@
             alt="Logo"
             class="mx-auto mb-6 max-w-[180px] h-auto"
           />
-          <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#26363f]">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
             Better Shopify SEO, Simplified.
           </h1>
           <p class="text-xl text-[#26363f] max-w-3xl mx-auto">
@@ -351,7 +351,7 @@
               }
             };
           }}
-          class="bg-white shadow-2xl rounded-lg border border-gray-200 p-6 mb-10"
+          class="bg-white shadow rounded-lg border border-gray-200 p-6 mb-10"
         >
           <div>
             <label
@@ -567,7 +567,7 @@
           {#await Promise.resolve(form.report) then report}
             <div class="space-y-10">
               <section
-                class="bg-[#ffffff] shadow-2xl rounded-lg border border-gray-200 p-6"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
               >
                 <div
                   class="flex flex-col items-center text-center md:flex-row md:items-start md:justify-between md:text-left gap-4 mb-4"
@@ -591,10 +591,15 @@
                       </div>
                     {/if}
                     <h2 class="text-2xl font-semibold mb-2 text-[#26363f]">
-                      High-Level Summary
+                      Your Growth Blueprint
                     </h2>
-                    <p class="text-sm text-[#26363f]">
-                      We analyzed {report.summary.totalProducts} products from your
+                    <p class="text-base text-[#26363f] font-medium mb-1">
+                      We scanned {report.summary.totalProducts} products and identified
+                      {report.summary.totalIssues} specific improvements to boost
+                      your visibility and conversion rate.
+                    </p>
+                    <p class="text-sm text-[#26363f]/80">
+                      We analyzed your
                       <code class="px-1 py-0.5 rounded bg-gray-100"
                         >/products.json</code
                       >
@@ -649,33 +654,47 @@
 
                 {#if form?.uplift}
                   <div
-                    class="mt-8 bg-white rounded-lg border border-dashed border-amber-400/60 p-5"
+                    class="mt-8 bg-gradient-to-br from-[#00a979]/5 to-[#00a979]/10 rounded-xl border-2 border-[#00a979]/30 p-8 shadow-lg"
                   >
-                    <h3 class="text-lg font-semibold text-[#26363f] mb-2">
-                      Rough revenue impact estimate
-                    </h3>
-                    <p class="text-sm text-[#26363f] mb-3">
-                      Based on your current catalog health score and the mix of
-                      issues we found, fixing the problems in this audit could
-                      plausibly unlock an estimated
-                      <span class="font-semibold">
+                    <div class="text-center mb-6">
+                      <div
+                        class="text-xs uppercase tracking-wider text-[#26363f]/70 font-semibold mb-3"
+                      >
+                        Opportunity Score
+                      </div>
+                      <div
+                        class="text-6xl md:text-7xl font-bold text-[#00a979] mb-2 leading-none"
+                      >
                         +{Math.round(form.uplift.minPercent * 100)}–{Math.round(
                           form.uplift.maxPercent * 100
-                        )}% uplift
-                      </span>
-                      in revenue from catalog-driven sales.
-                      <span class="font-semibold">
-                        This is a rough, directional estimate – not a forecast
-                        or guarantee.
-                      </span>
-                    </p>
+                        )}%
+                      </div>
+                      <div class="text-xl font-semibold text-[#26363f]">
+                        Revenue Lift
+                      </div>
+                    </div>
 
-                    <RevenueImpactCalculator
-                      uplift={form.uplift}
-                      class="mt-3"
-                    />
+                    <div class="bg-white/60 rounded-lg p-4 mb-4">
+                      <p class="text-sm text-[#26363f] mb-3">
+                        Based on your current catalog health score and the mix
+                        of issues we found, fixing the problems in this audit
+                        could plausibly unlock an estimated revenue uplift from
+                        catalog-driven sales.
+                        <span class="font-semibold">
+                          This is a rough, directional estimate – not a forecast
+                          or guarantee.
+                        </span>
+                      </p>
 
-                    <div class="mt-3 text-xs text-[#26363f]/80 leading-relaxed">
+                      <RevenueImpactCalculator
+                        uplift={form.uplift}
+                        class="mt-3"
+                      />
+                    </div>
+
+                    <div
+                      class="text-xs text-[#26363f]/70 leading-relaxed text-center"
+                    >
                       This estimate is based on generic benchmarks and simple
                       assumptions about how cleaner catalogs tend to convert
                       better. Actual results depend on your traffic mix,
@@ -705,7 +724,7 @@
 
               {#each report.sections as section}
                 <section
-                  class="bg-[#ffffff] shadow-2xl rounded-lg border border-gray-200 p-6"
+                  class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
                 >
                   <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl font-semibold text-[#26363f]">
@@ -834,50 +853,23 @@
                       </div>
                     {/each}
                   </div>
-
-                  <div class="mt-6 border-t border-gray-200 pt-4 text-center">
-                    <p class="text-xs text-[#26363f] mb-2">
-                      Want a deeper, done-for-you catalog roadmap based on this
-                      audit?
-                    </p>
-                    <a
-                      href="/contact"
-                      class="inline-flex items-center justify-center text-sm text-primary-400 hover:text-primary-300 font-medium"
-                    >
-                      talk to us about implementing these fixes
-                      <svg
-                        class="w-4 h-4 ml-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </a>
-                  </div>
                 </section>
               {/each}
 
               <!-- Download full audit CTA + gated form -->
               <section
                 id="download-audit"
-                class="bg-[#ffffff] shadow-2xl rounded-lg border border-gray-200 p-6"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
               >
                 <div>
                   <h2 class="text-xl font-semibold text-[#26363f]">
-                    Download full audit (Excel)
+                    Claim Your Complete Catalog Spreadsheet
                   </h2>
-                  <p class="mt-1 text-sm text-[#26363f]">
-                    Get a full Excel export of your catalog issues, including a
-                    summary dashboard and a “why this matters” column for every
-                    line item. Requires your email and permission to contact you
-                    about fixing the audit.
-                  </p>
+                  <ul class="mt-2 text-sm text-[#26363f] space-y-1">
+                    <li>✅ Row-by-row fix list for all 481 issues.</li>
+                    <li>✅ Pre-formatted for easy Shopify bulk-editing.</li>
+                    <li>✅ Prioritized by revenue impact.</li>
+                  </ul>
                 </div>
 
                 <form
@@ -1050,8 +1042,8 @@
                           for="auditConsent"
                           class="ml-2 text-sm text-[#26363f] cursor-pointer"
                         >
-                          I agree that Will can contact me about this audit and
-                          related ecommerce topics.
+                          Send me the full spreadsheet and occasional Shopify
+                          growth tips. No spam, ever.
                         </label>
                       </div>
                     </div>
@@ -1093,10 +1085,96 @@
                   {/if}
                 </form>
               </section>
+
+              <!-- Done-for-you implementation offer -->
+              <section
+                id="done-for-you"
+                class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-6"
+              >
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+                >
+                  <div>
+                    <h2 class="text-2xl font-semibold text-[#26363f] mb-2">
+                      We’ll fix everything for you
+                    </h2>
+                    <p class="text-sm text-[#26363f]/80 mb-3">
+                      Don’t have the time or team to work through this audit?
+                      We’ll go into your Shopify admin and fix the issues for
+                      you—from metadata and product templates to collection
+                      structure.
+                    </p>
+                    <ul
+                      class="text-sm text-[#26363f]/80 space-y-1 list-disc list-inside"
+                    >
+                      <li>
+                        Hands-on implementation of the fixes in this audit
+                      </li>
+                      <li>Prioritized plan based on impact, not just effort</li>
+                      <li>Follow-up review to confirm everything is clean</li>
+                    </ul>
+                  </div>
+                  <div class="text-center md:text-right md:min-w-[220px]">
+                    <div
+                      class="text-sm uppercase tracking-wide text-gray-500 mb-1"
+                    >
+                      Done-for-you store cleanup
+                    </div>
+                    <div class="text-4xl font-bold text-[#00a979] mb-3">
+                      $499
+                    </div>
+                    <a
+                      href="https://buy.stripe.com/test_placeholder"
+                      class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-sm hover:shadow-md transition"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Fix My Catalog For Me
+                    </a>
+                    <p class="mt-2 text-xs text-[#26363f]/70">
+                      Placeholder Stripe link – swap with your live checkout URL
+                      when ready.
+                    </p>
+                  </div>
+                </div>
+              </section>
             </div>
           {/await}
         {/if}
       </div>
     </div>
   </div>
+
+  <!-- Floating Help Me Fix This Button -->
+  {#if form?.report}
+    <a
+      href="#done-for-you"
+      onclick={(e) => {
+        e.preventDefault();
+        const el = document.getElementById("done-for-you");
+        if (el) {
+          el.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }}
+      class="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+    >
+      Help Me Fix This
+      <svg
+        class="w-5 h-5 ml-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </a>
+  {/if}
 </main>

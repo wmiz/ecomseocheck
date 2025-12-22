@@ -19,6 +19,12 @@
           >
             Terms of Service
           </a>
+          <a
+            href="/changelog"
+            class="text-dark hover:text-primary-500 transition-colors"
+          >
+            Changelog (v1.0)
+          </a>
         </div>
         <div class="text-center md:text-right">
           <span class="text-dark">
