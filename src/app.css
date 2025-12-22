@@ -1,35 +1,82 @@
 @import "tailwindcss";
 
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 50%, #f8f9fa 100%);
+  min-height: 100vh;
+}
+
+/* Better typography for paragraphs */
+p {
+  margin-bottom: 1em;
+}
+
+/* Better heading defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+@theme {
+  /* Primary Color Palette - Green */
+  --color-primary-500: #00a979;
+  --color-primary-600: #008a65;
+  --color-primary-400: #00c896;
+
+  /* Dark Blue-Gray for text and dark elements */
+  --color-dark: #26363f;
+  --color-dark-light: #3a4d58;
+  --color-dark-lighter: #4d606b;
+
+  /* White for backgrounds */
+  --color-white: #ffffff;
+}
+
 :root {
-  /* Primary Color Palette - Professional Teal/Blue */
-  --color-primary: #0d9488; /* Teal 600 */
-  --color-primary-dark: #0f766e; /* Teal 700 */
-  --color-primary-light: #14b8a6; /* Teal 500 */
-  --color-primary-bg: #f0fdfa; /* Teal 50 */
+  /* Primary Color Palette - Green */
+  --color-primary: #00a979;
+  --color-primary-dark: #008a65;
+  --color-primary-light: #00c896;
+  --color-primary-bg: #ffffff;
 
-  /* Secondary Color Palette - Warm Accent */
-  --color-secondary: #f59e0b; /* Amber 500 */
-  --color-secondary-dark: #d97706; /* Amber 600 */
-  --color-secondary-light: #fbbf24; /* Amber 400 */
+  /* Dark Blue-Gray for text and dark elements */
+  --color-dark: #26363f;
+  --color-dark-light: #3a4d58;
+  --color-dark-lighter: #4d606b;
 
-  /* Neutral Grays */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
+  /* Neutral Grays - adjusted to work with new scheme */
+  --color-gray-50: #ffffff;
+  --color-gray-100: #f5f7f8;
+  --color-gray-200: #e8ecef;
+  --color-gray-300: #d1d9dd;
+  --color-gray-400: #9ca8b0;
+  --color-gray-500: #6b7880;
   --color-gray-600: #4b5563;
   --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  --color-gray-800: #26363f;
+  --color-gray-900: #1a2328;
 
   /* Status Colors */
-  --color-success: #10b981; /* Green 500 */
+  --color-success: #00a979;
   --color-error: #ef4444; /* Red 500 */
   --color-warning: #f59e0b; /* Amber 500 */
 
   /* Background */
   --color-bg: #ffffff;
-  --color-bg-subtle: #f9fafb;
+  --color-bg-subtle: #f5f7f8;
 }
