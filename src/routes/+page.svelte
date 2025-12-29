@@ -191,14 +191,6 @@
     <div class="container mx-auto px-4 w-full">
       <div class="max-w-5xl mx-auto w-full">
         <div class="text-center mb-10">
-          <div class="flex justify-center mb-4">
-            <a
-              href="/contact"
-              class="text-sm text-[#6b7280] hover:text-[#374151] transition-colors"
-            >
-              Contact Us
-            </a>
-          </div>
           <img
             src={logo}
             alt="Logo"
@@ -1115,73 +1107,136 @@
                 id="done-for-you"
                 class="bg-[#ffffff] shadow rounded-lg border border-gray-200 p-8"
               >
-                <div
-                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
-                >
-                  <div>
-                    <h2 class="text-2xl font-semibold text-[#26363f] mb-2">
-                      Busy? We’ll fix everything for you
-                    </h2>
-                    <p class="text-sm text-[#26363f]/80 mb-3">
-                      Don’t have the time or team to work through this audit?
-                      We’ll go into your Shopify admin and fix the issues for
-                      you—from metadata and product templates to collection
-                      structure.
-                    </p>
-                    <ul
-                      class="text-sm text-[#26363f]/80 space-y-1 list-disc list-inside"
-                    >
-                      <li>
-                        Hands-on implementation of the fixes in this audit
-                      </li>
-                      <li>Prioritized plan based on impact, not just effort</li>
-                      <li>Follow-up review to confirm everything is clean</li>
-                    </ul>
-                  </div>
-                  <div class="text-center md:text-right md:min-w-[220px]">
-                    <div
-                      class="text-sm uppercase tracking-wide text-gray-500 mb-1"
-                    >
-                      Done-for-you store cleanup
-                    </div>
-                    <div class="text-4xl font-bold text-[#00a979] mb-3">
-                      $499
-                    </div>
-
-                    <a
-                      href="https://buy.stripe.com/14AbJ34vwatMdqt7BOb7y00"
-                      class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-lg hover:shadow-xl transition"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Fix My Catalog For Me
-                    </a>
-
-                    <div class="mt-3 flex justify-center">
-                      <a
-                        href="/guarantee"
-                        class="inline-flex items-center gap-2 text-xs font-semibold text-[#26363f] tracking-wide hover:text-[#00a979] transition-colors"
+                {#if report.summary.totalProducts <= 500 || report.summary.totalIssues <= 2500}
+                  <div
+                    class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+                  >
+                    <div>
+                      <h2 class="text-2xl font-semibold text-[#26363f] mb-2">
+                        Busy? We'll fix everything for you
+                      </h2>
+                      <p class="text-sm text-[#26363f]/80 mb-3">
+                        Don't have the time or team to work through this audit?
+                        We'll go into your Shopify admin and fix the issues for
+                        you—from metadata and product templates to collection
+                        structure.
+                      </p>
+                      <ul
+                        class="text-sm text-[#26363f]/80 space-y-1 list-disc list-inside"
                       >
-                        <svg
-                          class="h-4 w-4 text-[#00a979] flex-shrink-0"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                          />
-                          <path d="m9 12 2 2 4-4" />
-                        </svg>
-                        <span>100% satisfaction guarantee</span>
+                        <li>
+                          Hands-on implementation of the fixes in this audit
+                        </li>
+                        <li>
+                          Prioritized plan based on impact, not just effort
+                        </li>
+                        <li>Follow-up review to confirm everything is clean</li>
+                      </ul>
+                    </div>
+                    <div class="text-center md:text-right md:min-w-[220px]">
+                      <div
+                        class="text-sm uppercase tracking-wide text-gray-500 mb-1"
+                      >
+                        Done-for-you store cleanup
+                      </div>
+                      <div class="text-4xl font-bold text-[#00a979] mb-3">
+                        $499
+                      </div>
+
+                      <a
+                        href="https://buy.stripe.com/14AbJ34vwatMdqt7BOb7y00"
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-lg hover:shadow-xl transition"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Fix My Catalog For Me
                       </a>
+
+                      <div class="mt-3 flex justify-center">
+                        <a
+                          href="/guarantee"
+                          class="inline-flex items-center gap-2 text-xs font-semibold text-[#26363f] tracking-wide hover:text-[#00a979] transition-colors"
+                        >
+                          <svg
+                            class="h-4 w-4 text-[#00a979] flex-shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            />
+                            <path d="m9 12 2 2 4-4" />
+                          </svg>
+                          <span>100% satisfaction guarantee</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                {:else}
+                  <div
+                    class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+                  >
+                    <div>
+                      <h2 class="text-2xl font-semibold text-[#26363f] mb-2">
+                        Need help fixing everything?
+                      </h2>
+                      <p class="text-sm text-[#26363f]/80 mb-3">
+                        With {report.summary.totalProducts} products and {report
+                          .summary.totalIssues} issues, your store needs a custom
+                        solution. Let's discuss the best approach for your catalog
+                        cleanup.
+                      </p>
+                      <ul
+                        class="text-sm text-[#26363f]/80 space-y-1 list-disc list-inside"
+                      >
+                        <li>
+                          Custom pricing based on your store size and needs
+                        </li>
+                        <li>
+                          Prioritized plan based on impact, not just effort
+                        </li>
+                        <li>Follow-up review to confirm everything is clean</li>
+                      </ul>
+                    </div>
+                    <div class="text-center md:text-right md:min-w-[220px]">
+                      <a
+                        href="/contact"
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-lg hover:shadow-xl transition"
+                      >
+                        Contact Us
+                      </a>
+
+                      <div class="mt-3 flex justify-center">
+                        <a
+                          href="/guarantee"
+                          class="inline-flex items-center gap-2 text-xs font-semibold text-[#26363f] tracking-wide hover:text-[#00a979] transition-colors"
+                        >
+                          <svg
+                            class="h-4 w-4 text-[#00a979] flex-shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            />
+                            <path d="m9 12 2 2 4-4" />
+                          </svg>
+                          <span>100% satisfaction guarantee</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {/if}
               </section>
             </div>
           {/await}
