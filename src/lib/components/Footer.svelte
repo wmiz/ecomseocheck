@@ -31,6 +31,12 @@
           >
             Satisfaction Guarantee
           </a>
+          <a
+            href="/contact"
+            class="text-dark hover:text-primary-500 transition-colors"
+          >
+            Contact Us
+          </a>
         </div>
         <div class="text-center md:text-right">
           <span class="text-dark">

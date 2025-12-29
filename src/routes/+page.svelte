@@ -186,11 +186,19 @@
   <meta name="description" content={pageDescription} />
 </svelte:head>
 
-<main class=" min-h-[80vh] flex justify-center items-center pt-15">
-  <div id="audit" class="flex justify-center items-center">
-    <div class="container mx-auto px-4">
-      <div class="max-w-5xl mx-auto">
+<main class="min-h-[80vh] flex justify-center items-start pt-15 pb-15">
+  <div id="audit" class="w-full flex justify-center items-start">
+    <div class="container mx-auto px-4 w-full">
+      <div class="max-w-5xl mx-auto w-full">
         <div class="text-center mb-10">
+          <div class="flex justify-center mb-4">
+            <a
+              href="/contact"
+              class="text-sm text-[#6b7280] hover:text-[#374151] transition-colors"
+            >
+              Contact Us
+            </a>
+          </div>
           <img
             src={logo}
             alt="Logo"
@@ -1052,8 +1060,8 @@
                           for="auditConsent"
                           class="ml-2 text-sm text-[#26363f] cursor-pointer"
                         >
-                          Send me the full spreadsheet and occasional Shopify
-                          growth tips. No spam, ever.
+                          I agree that eComSEOCheck can contact me about this
+                          audit and related ecommerce topics.
                         </label>
                       </div>
                     </div>
