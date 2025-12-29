@@ -1,10 +1,12 @@
 <script>
   import RevenueImpactCalculator from "$lib/components/RevenueImpactCalculator.svelte";
+  import SEO from "$lib/components/SEO.svelte";
   import { enhance, applyAction } from "$app/forms";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { onMount, tick } from "svelte";
   import logo from "$lib/assets/logo.png";
+  import { generateServiceSchema } from "$lib/utils/seo.js";
 
   let storeUrl = $state("");
   let storeName = $state("");
@@ -128,6 +130,12 @@
   const pageDescription =
     "Run a free Shopify product catalog health audit. Check SEO, conversion, data integrity, and hidden upsell opportunities using only your public /products.json feed.";
 
+  // Generate service schema for homepage
+  const serviceSchema = generateServiceSchema({
+    name: pageTitle,
+    description: pageDescription
+  });
+
   const getGradeClasses = (value) => {
     if (value == null || value === "") {
       return "inline-flex items-center justify-center rounded-full px-3 py-1 text-sm font-semibold bg-gray-100 text-gray-900";
@@ -181,10 +189,13 @@
   };
 </script>
 
-<svelte:head>
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
-</svelte:head>
+<SEO
+  title={pageTitle}
+  description={pageDescription}
+  image="/logo.png"
+  type="website"
+  serviceSchema={serviceSchema}
+/>
 
 <main class="min-h-[80vh] flex justify-center items-start pt-15 pb-15">
   <div id="audit" class="w-full flex justify-center items-start">
@@ -193,7 +204,9 @@
         <div class="text-center mb-10">
           <img
             src={logo}
-            alt="Logo"
+            alt="eComSEOCheck - Shopify Store Health Audit Tool"
+            width="200"
+            height="auto"
             class="mx-auto mb-2 max-w-[200px] h-auto"
           />
           <a

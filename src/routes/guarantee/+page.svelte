@@ -1,4 +1,5 @@
 <script>
+  import SEO from "$lib/components/SEO.svelte";
   import logo from "$lib/assets/logo.png";
 
   const pageTitle = "100% Satisfaction Guarantee";
@@ -6,17 +7,25 @@
     "We guarantee your complete satisfaction with our Shopify catalog audit and cleanup services, or we'll issue a full refund—no questions asked.";
 </script>
 
-<svelte:head>
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
-</svelte:head>
+<SEO
+  title={pageTitle}
+  description={pageDescription}
+  image="/logo.png"
+  type="website"
+/>
 
 <main class="min-h-[80vh] flex justify-center items-center pt-15">
   <div class="container mx-auto px-4 py-12">
     <div class="max-w-4xl mx-auto">
       <!-- Header -->
       <div class="text-center mb-12">
-        <img src={logo} alt="Logo" class="mx-auto mb-6 max-w-[200px] h-auto" />
+        <img
+          src={logo}
+          alt="eComSEOCheck - Shopify Store Health Audit Tool"
+          width="200"
+          height="auto"
+          class="mx-auto mb-6 max-w-[200px] h-auto"
+        />
         <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
           100% Satisfaction Guarantee
         </h1>

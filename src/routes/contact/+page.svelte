@@ -1,4 +1,5 @@
 <script>
+  import SEO from "$lib/components/SEO.svelte";
   import { enhance } from "$app/forms";
   import { page } from "$app/stores";
   import logo from "$lib/assets/logo.png";
@@ -11,17 +12,25 @@
     "Get in touch with us about your Shopify store audit, catalog cleanup, or any questions you have.";
 </script>
 
-<svelte:head>
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
-</svelte:head>
+<SEO
+  title={pageTitle}
+  description={pageDescription}
+  image="/logo.png"
+  type="website"
+/>
 
 <main class="min-h-[80vh] flex justify-center items-start pt-15 pb-15">
   <div class="container mx-auto px-4 w-full">
     <div class="max-w-2xl mx-auto w-full">
       <!-- Header -->
       <div class="text-center mb-10">
-        <img src={logo} alt="Logo" class="mx-auto mb-2 max-w-[200px] h-auto" />
+        <img
+          src={logo}
+          alt="eComSEOCheck - Shopify Store Health Audit Tool"
+          width="200"
+          height="auto"
+          class="mx-auto mb-2 max-w-[200px] h-auto"
+        />
         <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
           Get in Touch
         </h1>

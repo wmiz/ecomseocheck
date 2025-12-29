@@ -1,10 +1,17 @@
-<svelte:head>
-  <title>Changelog - ESC</title>
-  <meta
-    name="description"
-    content="Product changelog and release history for ESC."
-  />
-</svelte:head>
+<script>
+  import SEO from "$lib/components/SEO.svelte";
+
+  const pageTitle = "Changelog - eComSEOCheck";
+  const pageDescription =
+    "Product changelog and release history for eComSEOCheck. See what's new and what we've improved.";
+</script>
+
+<SEO
+  title={pageTitle}
+  description={pageDescription}
+  image="/logo.png"
+  type="website"
+/>
 
 <main class="container mx-auto px-4 py-12 max-w-3xl">
   <h1 class="text-3xl font-bold mb-6 text-gray-900">Changelog</h1>
