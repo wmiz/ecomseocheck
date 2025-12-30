@@ -1,6 +1,7 @@
 import { fail } from "@sveltejs/kit";
 import { runCatalogAudit } from "$lib/utils/catalogAudit.js";
 import { computeRevenueUpliftRange } from "$lib/utils/revenueImpact.js";
+import { verifyRecaptchaWithScore } from "$lib/utils/recaptcha.server.js";
 
 /**
  * Normalize and validate a store URL string.
@@ -201,9 +202,27 @@ export async function _buildCatalogAuditResult({ storeUrl, fetch }) {
 }
 
 export const actions = {
-  default: async ({ request, fetch }) => {
+  default: async ({ request, fetch, getClientAddress }) => {
     const data = await request.formData();
     const rawStoreUrl = (data.get("storeUrl") || "").toString().trim();
+    const recaptchaToken = data.get("recaptchaToken");
+
+    // Verify reCAPTCHA if token is provided
+    if (recaptchaToken) {
+      const clientIp = getClientAddress();
+      const recaptchaResult = await verifyRecaptchaWithScore(
+        recaptchaToken.toString(),
+        0.5, // Minimum score threshold
+        clientIp
+      );
+
+      if (!recaptchaResult.success) {
+        return fail(400, {
+          error: "reCAPTCHA verification failed. Please try again.",
+          storeUrl: rawStoreUrl,
+        });
+      }
+    }
 
     const result = await _buildCatalogAuditResult({
       storeUrl: rawStoreUrl,

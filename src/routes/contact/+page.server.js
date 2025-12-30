@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { env } from "$env/dynamic/private";
 import { fail } from "@sveltejs/kit";
+import { verifyRecaptchaWithScore } from "$lib/utils/recaptcha.server.js";
 
 // Simple HTML escape function to prevent XSS
 function escapeHtml(text) {
@@ -15,12 +16,29 @@ function escapeHtml(text) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-  default: async ({ request }) => {
+  default: async ({ request, getClientAddress }) => {
     const formData = await request.formData();
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
     const message = formData.get("message");
+    const recaptchaToken = formData.get("recaptchaToken");
+
+    // Verify reCAPTCHA if token is provided
+    if (recaptchaToken) {
+      const clientIp = getClientAddress();
+      const recaptchaResult = await verifyRecaptchaWithScore(
+        recaptchaToken.toString(),
+        0.5, // Minimum score threshold
+        clientIp
+      );
+
+      if (!recaptchaResult.success) {
+        return fail(400, {
+          error: "reCAPTCHA verification failed. Please try again.",
+        });
+      }
+    }
 
     // Validate required fields
     if (!name || !email || !subject || !message) {

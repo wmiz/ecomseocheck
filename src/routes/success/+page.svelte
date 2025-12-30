@@ -3,6 +3,7 @@
   import { enhance } from "$app/forms";
   import { page } from "$app/stores";
   import logo from "$lib/assets/logo.png";
+  import { executeRecaptcha } from "$lib/utils/recaptcha.js";
 
   let submitting = $state(false);
   let form = $derived($page.form);
@@ -10,6 +11,8 @@
   const pageTitle = "Payment Successful";
   const pageDescription =
     "Thank you for your purchase! Please provide your Shopify collaborator code to get started.";
+
+  const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 </script>
 
 <SEO
@@ -216,9 +219,22 @@
 
         <form
           method="POST"
-          use:enhance={({ formElement }) => {
+          use:enhance={({ formElement, formData, cancel }) => {
             submitting = true;
             return async ({ result, update }) => {
+              // Add reCAPTCHA token if site key is configured
+              if (recaptchaSiteKey) {
+                try {
+                  const token = await executeRecaptcha(recaptchaSiteKey, "submit");
+                  formData.append("recaptchaToken", token);
+                } catch (error) {
+                  console.error("reCAPTCHA error:", error);
+                  submitting = false;
+                  // Continue with form submission even if reCAPTCHA fails
+                  // The server will handle validation
+                }
+              }
+
               await update();
               submitting = false;
               // Reset form on success

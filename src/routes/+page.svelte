@@ -7,6 +7,7 @@
   import { onMount, tick } from "svelte";
   import logo from "$lib/assets/logo.png";
   import { generateServiceSchema } from "$lib/utils/seo.js";
+  import { executeRecaptcha } from "$lib/utils/recaptcha.js";
 
   let storeUrl = $state("");
   let storeName = $state("");
@@ -26,6 +27,8 @@
   let form = $derived($page.form);
   let urlParam = $derived($page.url.searchParams.get("url") || "");
   let lastAutoSubmittedUrl = $state("");
+
+  const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
   // Normalize URLs for comparison (remove protocol, trailing slashes, lowercase)
   function normalizeUrlForComparison(url) {
@@ -267,7 +270,7 @@
           method="POST"
           action="/audit"
           data-audit-form
-          use:enhance={() => {
+          use:enhance={({ formData }) => {
             submitting = true;
             progress = 0;
             progressMessage = "Initializing audit...";
@@ -334,7 +337,22 @@
             };
             scheduleNext();
 
-            return async ({ result }) => {
+            return async ({ result, update }) => {
+              // Add reCAPTCHA token if site key is configured
+              if (recaptchaSiteKey && !formData.has("recaptchaToken")) {
+                try {
+                  const token = await executeRecaptcha(recaptchaSiteKey, "audit");
+                  formData.append("recaptchaToken", token);
+                } catch (error) {
+                  console.error("reCAPTCHA error:", error);
+                  // Continue with form submission even if reCAPTCHA fails
+                  // The server will handle validation
+                }
+              }
+
+              // Call update to submit the form (this will include the token if added above)
+              await update();
+
               try {
                 // Use applyAction to handle the response without navigation
                 // This keeps the form data on the current page so results display correctly

@@ -4,6 +4,8 @@
 
   let { children } = $props();
   import "../app.css";
+
+  const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 </script>
 
 <svelte:head>
@@ -29,6 +31,15 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "utikq67oj5");
   </script>
+  
+  <!-- Google reCAPTCHA v3 -->
+  {#if recaptchaSiteKey}
+    <script
+      src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+      async
+      defer
+    ></script>
+  {/if}
 </svelte:head>
 
 {@render children()}
