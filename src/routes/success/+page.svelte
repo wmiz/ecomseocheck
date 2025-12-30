@@ -225,7 +225,10 @@
               // Add reCAPTCHA token if site key is configured
               if (recaptchaSiteKey) {
                 try {
-                  const token = await executeRecaptcha(recaptchaSiteKey, "submit");
+                  const token = await executeRecaptcha(
+                    recaptchaSiteKey,
+                    "submit"
+                  );
                   formData.append("recaptchaToken", token);
                 } catch (error) {
                   console.error("reCAPTCHA error:", error);

@@ -136,7 +136,7 @@
   // Generate service schema for homepage
   const serviceSchema = generateServiceSchema({
     name: pageTitle,
-    description: pageDescription
+    description: pageDescription,
   });
 
   const getGradeClasses = (value) => {
@@ -197,7 +197,7 @@
   description={pageDescription}
   image="/logo.png"
   type="website"
-  serviceSchema={serviceSchema}
+  {serviceSchema}
 />
 
 <main class="min-h-[80vh] flex justify-center items-start pt-15 pb-15">
@@ -341,7 +341,10 @@
               // Add reCAPTCHA token if site key is configured
               if (recaptchaSiteKey && !formData.has("recaptchaToken")) {
                 try {
-                  const token = await executeRecaptcha(recaptchaSiteKey, "audit");
+                  const token = await executeRecaptcha(
+                    recaptchaSiteKey,
+                    "audit"
+                  );
                   formData.append("recaptchaToken", token);
                 } catch (error) {
                   console.error("reCAPTCHA error:", error);

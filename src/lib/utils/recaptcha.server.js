@@ -1,6 +1,6 @@
 /**
  * Server-side utility for verifying Google reCAPTCHA v3 tokens
- * 
+ *
  * This utility verifies reCAPTCHA tokens on the server.
  * Make sure to set RECAPTCHA_SECRET_KEY in your environment variables.
  */
@@ -50,7 +50,9 @@ export async function verifyRecaptcha(token, remoteip = null) {
     });
 
     if (!response.ok) {
-      throw new Error(`reCAPTCHA verification request failed: ${response.statusText}`);
+      throw new Error(
+        `reCAPTCHA verification request failed: ${response.statusText}`
+      );
     }
 
     const data = await response.json();
@@ -58,7 +60,8 @@ export async function verifyRecaptcha(token, remoteip = null) {
     if (!data.success) {
       return {
         success: false,
-        error: data["error-codes"]?.join(", ") || "reCAPTCHA verification failed",
+        error:
+          data["error-codes"]?.join(", ") || "reCAPTCHA verification failed",
       };
     }
 
@@ -89,7 +92,11 @@ export async function verifyRecaptcha(token, remoteip = null) {
  * @param {string} remoteip - Optional: The user's IP address
  * @returns {Promise<{success: boolean, score?: number, error?: string}>}
  */
-export async function verifyRecaptchaWithScore(token, minScore = 0.5, remoteip = null) {
+export async function verifyRecaptchaWithScore(
+  token,
+  minScore = 0.5,
+  remoteip = null
+) {
   const result = await verifyRecaptcha(token, remoteip);
 
   if (!result.success) {
@@ -100,11 +107,11 @@ export async function verifyRecaptchaWithScore(token, minScore = 0.5, remoteip =
     return {
       success: false,
       score: result.score,
-      error: `reCAPTCHA score too low: ${result.score.toFixed(2)} (minimum: ${minScore})`,
+      error: `reCAPTCHA score too low: ${result.score.toFixed(
+        2
+      )} (minimum: ${minScore})`,
     };
   }
 
   return result;
 }
-
-

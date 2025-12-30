@@ -2,6 +2,7 @@ import { fail } from "@sveltejs/kit";
 import { runCatalogAudit } from "$lib/utils/catalogAudit.js";
 import { computeRevenueUpliftRange } from "$lib/utils/revenueImpact.js";
 import { verifyRecaptchaWithScore } from "$lib/utils/recaptcha.server.js";
+import { getSupabaseClient } from "$lib/utils/supabase.server.js";
 
 /**
  * Normalize and validate a store URL string.
@@ -206,11 +207,12 @@ export const actions = {
     const data = await request.formData();
     const rawStoreUrl = (data.get("storeUrl") || "").toString().trim();
     const recaptchaToken = data.get("recaptchaToken");
+    const clientIp = getClientAddress();
 
     // Verify reCAPTCHA if token is provided
+    let recaptchaResult = null;
     if (recaptchaToken) {
-      const clientIp = getClientAddress();
-      const recaptchaResult = await verifyRecaptchaWithScore(
+      recaptchaResult = await verifyRecaptchaWithScore(
         recaptchaToken.toString(),
         0.5, // Minimum score threshold
         clientIp
@@ -245,6 +247,34 @@ export const actions = {
         info: result.info,
         uplift: null,
       };
+    }
+
+    // Save audit data to Supabase (non-blocking - don't fail the request if this fails)
+    try {
+      const supabase = getSupabaseClient();
+      const userAgent = request.headers.get("user-agent") || null;
+      const recaptchaScore = recaptchaResult?.score || null;
+
+      const { error: dbError } = await supabase.from("audit_requests").insert({
+        store_url: result.storeUrl,
+        store_name: result.storeName,
+        myshopify_domain: result.myshopifyDomain,
+        overall_score: Math.round(result.report.summary.overallScore),
+        total_issues: result.report.summary.totalIssues,
+        overall_grade: result.report.summary.overallGrade,
+        total_products: result.report.summary.totalProducts,
+        ip_address: clientIp,
+        user_agent: userAgent,
+        recaptcha_score: recaptchaScore,
+      });
+
+      if (dbError) {
+        // Log error but don't fail the request
+        console.error("Failed to save audit to Supabase:", dbError);
+      }
+    } catch (error) {
+      // Log error but don't fail the request
+      console.error("Error saving audit to Supabase:", error);
     }
 
     return {

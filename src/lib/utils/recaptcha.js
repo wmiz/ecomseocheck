@@ -1,6 +1,6 @@
 /**
  * Client-side utility for Google reCAPTCHA v3
- * 
+ *
  * This utility handles executing reCAPTCHA and getting tokens.
  * Make sure to set PUBLIC_RECAPTCHA_SITE_KEY in your environment variables.
  */
@@ -64,5 +64,3 @@ export async function executeRecaptcha(siteKey, action = "submit") {
     throw new Error("Failed to execute reCAPTCHA. Please try again.");
   }
 }
-
-
