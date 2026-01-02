@@ -190,6 +190,24 @@
     // D or below (or unknown)
     return base + " bg-red-500/15 text-red-700 border border-red-500/40";
   };
+
+  // Google Ads conversion tracking function
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-16678649905/GLW7CNDiy90ZELGAgJE-',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': callback
+      });
+    }
+    return false;
+  }
 </script>
 
 <SEO
@@ -922,6 +940,10 @@
                   action="/audit/export"
                   onsubmit={async (event) => {
                     event.preventDefault();
+                    
+                    // Track Google Ads conversion
+                    gtag_report_conversion();
+                    
                     downloadError = "";
                     downloadSubmitting = true;
                     downloadProgress = 0;
