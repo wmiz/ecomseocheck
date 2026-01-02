@@ -1086,8 +1086,8 @@
                           for="auditConsent"
                           class="ml-2 text-sm text-[#26363f] cursor-pointer"
                         >
-                          I agree that eComSEOCheck can contact me about this
-                          audit and related ecommerce topics.
+                          I agree that Misback Consulting can contact me about
+                          this audit and related ecommerce topics.
                         </label>
                       </div>
                     </div>
