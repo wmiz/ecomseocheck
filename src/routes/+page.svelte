@@ -23,6 +23,17 @@
   let downloadProgressMessage = $state("");
   let downloadError = $state("");
   let auditEmailFocused = $state(false);
+  let contactEmailCopied = $state(false);
+
+  const contactEmail = "will@getecomseocheck.com";
+
+  async function copyContactEmail() {
+    try {
+      await navigator.clipboard.writeText(contactEmail);
+      contactEmailCopied = true;
+      setTimeout(() => (contactEmailCopied = false), 2000);
+    } catch (_) {}
+  }
 
   let form = $derived($page.form);
   let urlParam = $derived($page.url.searchParams.get("url") || "");
@@ -194,16 +205,16 @@
   // Google Ads conversion tracking function
   function gtag_report_conversion(url) {
     var callback = function () {
-      if (typeof(url) != 'undefined') {
+      if (typeof url != "undefined") {
         window.location = url;
       }
     };
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'conversion', {
-        'send_to': 'AW-16678649905/GLW7CNDiy90ZELGAgJE-',
-        'value': 1.0,
-        'currency': 'USD',
-        'event_callback': callback
+    if (typeof gtag !== "undefined") {
+      gtag("event", "conversion", {
+        send_to: "AW-16678649905/GLW7CNDiy90ZELGAgJE-",
+        value: 1.0,
+        currency: "USD",
+        event_callback: callback,
       });
     }
     return false;
@@ -940,10 +951,10 @@
                   action="/audit/export"
                   onsubmit={async (event) => {
                     event.preventDefault();
-                    
+
                     // Track Google Ads conversion
                     gtag_report_conversion();
-                    
+
                     downloadError = "";
                     downloadSubmitting = true;
                     downloadProgress = 0;
@@ -1190,22 +1201,62 @@
                       </ul>
                     </div>
                     <div class="text-center md:text-right md:min-w-[220px]">
-                      <div
-                        class="text-sm uppercase tracking-wide text-gray-500 mb-1"
+                      <button
+                        type="button"
+                        onclick={copyContactEmail}
+                        class="flex items-center justify-center md:justify-end gap-2 mb-3 w-full md:w-auto rounded px-1 py-0.5 -mx-1 -my-0.5 text-left md:text-right text-gray-500 hover:text-[#00a979] hover:bg-[#00a979]/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#00a979] focus:ring-offset-1 cursor-pointer"
+                        title={contactEmailCopied ? "Copied!" : "Copy email"}
+                        aria-label={contactEmailCopied ? "Copied!" : "Copy email"}
                       >
-                        Done-for-you store cleanup
-                      </div>
-                      <div class="text-4xl font-bold text-[#00a979] mb-3">
-                        $499
-                      </div>
+                        <span
+                          class="text-xs uppercase tracking-wide"
+                        >
+                          {contactEmail}
+                        </span>
+                        {#if contactEmailCopied}
+                          <svg
+                            class="h-3.5 w-3.5 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M20 6 9 17l-5-5" />
+                          </svg>
+                        {:else}
+                          <svg
+                            class="h-3.5 w-3.5 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <rect
+                              width="14"
+                              height="14"
+                              x="8"
+                              y="8"
+                              rx="2"
+                              ry="2"
+                            />
+                            <path
+                              d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                            />
+                          </svg>
+                        {/if}
+                      </button>
 
                       <a
-                        href="https://buy.stripe.com/14AbJ34vwatMdqt7BOb7y00"
+                        href="mailto:{contactEmail}"
                         class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00a979] hover:bg-[#008a65] text-white text-base font-semibold cursor-pointer shadow-lg hover:shadow-xl transition"
-                        target="_blank"
-                        rel="noopener noreferrer"
                       >
-                        Fix My Catalog For Me
+                        Contact us
                       </a>
 
                       <div class="mt-3 flex justify-center">
