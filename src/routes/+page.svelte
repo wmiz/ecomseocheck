@@ -1140,10 +1140,6 @@
                           DOWNLOAD FREE SPREADSHEET
                         {/if}
                       </button>
-                      <p class="mt-2 text-[11px] text-[#26363f]/70">
-                        The catalog spreadsheet is free. Optional done-for-you
-                        cleanup is a separate $499 service.
-                      </p>
                     </div>
                   </div>
                   {#if downloadSubmitting}
