@@ -91,31 +91,48 @@ export function findMissingImageAlt(products) {
   const results = [];
 
   for (const product of products) {
-    const images = Array.isArray(product.images) ? product.images : [];
-    const primaryImage = product.image ? [product.image] : [];
-    const allImages = [...primaryImage, ...images];
+    const variants = Array.isArray(product.variants) ? product.variants : [];
+    const featuredImages = variants
+      .map((variant) => variant && variant.featured_image)
+      .filter(Boolean);
 
-    const missing = allImages.filter((img) => {
+    // If there are no variant featured images, we can't reliably see alt text,
+    // so we skip this product from the check.
+    if (featuredImages.length === 0) {
+      continue;
+    }
+
+    let missingCount = 0;
+    let withAltCount = 0;
+
+    for (const img of featuredImages) {
       const alt = img && typeof img.alt === "string" ? img.alt : img?.alt_text;
-      return !alt || alt.trim().length === 0;
-    });
+      if (alt && alt.trim().length > 0) {
+        withAltCount += 1;
+      } else {
+        missingCount += 1;
+      }
+    }
 
-    if (missing.length > 0) {
+    if (missingCount > 0) {
       results.push({
         product: productRef(product),
-        missingCount: missing.length,
+        missingCount,
+        checkedImages: featuredImages.length,
+        altCoverageRatio: withAltCount / featuredImages.length,
       });
     }
   }
 
-  const totalProducts = products.length || 1;
+  // Only count products where we were actually able to inspect alt text
+  const totalProducts = results.length || 1;
   const count = results.length;
 
   return {
     id: "missing_image_alt",
     label: "Missing Image Alt Text",
     description:
-      "Many product images are missing alt text, which hurts accessibility and SEO. Adding descriptive alt text helps Google understand your products and improves screen-reader experiences.",
+      "Many product images are inferred to be missing alt text based on variant featured images, which hurts accessibility and SEO. Adding descriptive alt text helps Google understand your products and improves screen-reader experiences.",
     severity: "critical",
     count,
     percentage: (count / totalProducts) * 100,
