@@ -22,35 +22,32 @@
   type="website"
 />
 
-<main class="min-h-[80vh] flex justify-center items-start pt-15 pb-15">
-  <div class="container mx-auto px-4 w-full">
-    <div class="max-w-2xl mx-auto w-full">
-      <!-- Header -->
-      <div class="text-center mb-10">
-        <img
-          src={logo}
-          alt="eComSEOCheck - Shopify Store Health Audit Tool"
-          width="200"
-          height="auto"
-          class="mx-auto mb-2 max-w-[200px] h-auto"
-        />
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#26363f]">
-          Get in Touch
-        </h1>
-        <p class="text-xl text-[#26363f] max-w-2xl mx-auto">
-          Have questions about your audit? Want to learn more about our
-          services? We'd love to hear from you.
-        </p>
-      </div>
+<main>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0f172a] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[length:24px_24px]"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+        Let's Talk About Your Store
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+        Questions about your audit results? Want us to fix the issues for you? Reach out — we typically respond within one business day.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="bg-[#f8fafc] py-16 md:py-24">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Success Message -->
       {#if form?.success}
         <div
-          class="bg-emerald-500/15 border border-emerald-500 rounded-lg p-4 mb-6"
+          class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 mb-8"
         >
-          <div class="flex items-start">
+          <div class="flex items-start gap-3">
             <svg
-              class="w-5 h-5 text-emerald-400 mr-3 mt-0.5 shrink-0"
+              class="w-5 h-5 text-emerald-500 mt-0.5 shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -61,11 +58,11 @@
               />
             </svg>
             <div>
-              <h3 class="text-sm font-semibold text-[#26363f] mb-1">
-                Message sent successfully!
+              <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                Got it — we'll be in touch soon.
               </h3>
-              <p class="text-sm text-[#26363f]">
-                We'll get back to you as soon as possible.
+              <p class="text-sm text-slate-600">
+                We typically respond within one business day.
               </p>
             </div>
           </div>
@@ -74,10 +71,10 @@
 
       <!-- Error Message -->
       {#if form?.error}
-        <div class="bg-red-500/15 border border-red-500 rounded-lg p-4 mb-6">
-          <div class="flex items-start">
+        <div class="bg-red-50 border border-red-200 rounded-2xl p-5 mb-8">
+          <div class="flex items-start gap-3">
             <svg
-              class="w-5 h-5 text-red-400 mr-3 mt-0.5 shrink-0"
+              class="w-5 h-5 text-red-500 mt-0.5 shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -88,10 +85,10 @@
               />
             </svg>
             <div>
-              <h3 class="text-sm font-semibold text-[#26363f] mb-1">
+              <h3 class="text-sm font-semibold text-slate-900 mb-1">
                 Error sending message
               </h3>
-              <p class="text-sm text-[#26363f]">
+              <p class="text-sm text-slate-600">
                 {form.error}
               </p>
             </div>
@@ -99,8 +96,8 @@
         </div>
       {/if}
 
-      <!-- Contact Form -->
-      <div class="bg-white shadow rounded-lg border border-gray-200 p-6 md:p-8">
+      <!-- Contact Form Card -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-10">
         <form
           method="POST"
           use:enhance={({ formElement, formData, cancel }) => {
@@ -135,7 +132,7 @@
           <div>
             <label
               for="name"
-              class="block text-sm font-medium text-[#26363f] mb-2"
+              class="block text-sm font-medium text-slate-900 mb-2"
             >
               Name
             </label>
@@ -144,7 +141,7 @@
               name="name"
               type="text"
               required
-              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-[#26363f] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a979] focus:border-transparent transition-all"
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a979]/40 focus:border-[#00a979] transition-all"
               placeholder="Your name"
             />
           </div>
@@ -152,7 +149,7 @@
           <div>
             <label
               for="email"
-              class="block text-sm font-medium text-[#26363f] mb-2"
+              class="block text-sm font-medium text-slate-900 mb-2"
             >
               Email
             </label>
@@ -161,7 +158,7 @@
               name="email"
               type="email"
               required
-              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-[#26363f] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a979] focus:border-transparent transition-all"
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a979]/40 focus:border-[#00a979] transition-all"
               placeholder="your@email.com"
             />
           </div>
@@ -169,7 +166,7 @@
           <div>
             <label
               for="subject"
-              class="block text-sm font-medium text-[#26363f] mb-2"
+              class="block text-sm font-medium text-slate-900 mb-2"
             >
               Subject
             </label>
@@ -178,7 +175,7 @@
               name="subject"
               type="text"
               required
-              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-[#26363f] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a979] focus:border-transparent transition-all"
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a979]/40 focus:border-[#00a979] transition-all"
               placeholder="What's this about?"
             />
           </div>
@@ -186,7 +183,7 @@
           <div>
             <label
               for="message"
-              class="block text-sm font-medium text-[#26363f] mb-2"
+              class="block text-sm font-medium text-slate-900 mb-2"
             >
               Message
             </label>
@@ -195,14 +192,14 @@
               name="message"
               rows="6"
               required
-              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-[#26363f] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a979] focus:border-transparent transition-all resize-y"
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a979]/40 focus:border-[#00a979] transition-all resize-y"
               placeholder="Tell us more about your question or project..."
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full cursor-pointer inline-flex items-center justify-center px-6 py-3 bg-[#00a979] hover:bg-[#008a65] text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full cursor-pointer inline-flex items-center justify-center px-6 py-3.5 bg-[#00a979] hover:bg-[#008a65] text-white font-semibold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={submitting}
           >
             {#if submitting}
@@ -236,10 +233,10 @@
 
       <!-- Additional Info -->
       <div class="mt-8 text-center">
-        <p class="text-sm text-[#26363f]/80">
-          We typically respond within 24 hours during business days.
+        <p class="text-sm text-slate-500">
+          We typically respond within one business day.
         </p>
       </div>
     </div>
-  </div>
+  </section>
 </main>

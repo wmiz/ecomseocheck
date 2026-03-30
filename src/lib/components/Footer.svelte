@@ -1,56 +1,102 @@
-<footer class=" border-t border-gray-200 py-8 mt-12">
-  <div class="container mx-auto px-4">
-    <div class="max-w-5xl mx-auto">
-      <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-dark"
-      >
-        <div
-          class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6"
+<script>
+  import logo from "$lib/assets/logo.png";
+</script>
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+      <!-- Brand Column -->
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-3 text-lg font-bold text-slate-900">
+          <img src={logo} alt="eComSEOCheck" class="h-8 w-auto" />
+          <span>eComSEOCheck</span>
+        </a>
+        <p class="mt-3 text-sm text-slate-500 max-w-sm leading-relaxed">
+          Find out exactly why your Shopify products aren't ranking or converting — and get a prioritized fix list in under 60 seconds. Free.
+        </p>
+        <p class="mt-4 text-xs text-slate-400">
+          &copy; {new Date().getFullYear()}{" "}
+          <a
+            href="https://willmisback.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[#00a979] transition-colors"
+          >
+            Misback Consulting
+          </a>
+        </p>
+      </div>
+
+      <!-- Product Links -->
+      <div>
+        <h4
+          class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4"
         >
-          <a
-            href="/privacy"
-            class="text-dark hover:text-primary-500 transition-colors"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="/terms"
-            class="text-dark hover:text-primary-500 transition-colors"
-          >
-            Terms of Service
-          </a>
-          <a
-            href="/changelog"
-            class="text-dark hover:text-primary-500 transition-colors"
-          >
-            Changelog (v1.0)
-          </a>
-          <a
-            href="/guarantee"
-            class="text-dark hover:text-primary-500 transition-colors"
-          >
-            Satisfaction Guarantee
-          </a>
-          <a
-            href="/contact"
-            class="text-dark hover:text-primary-500 transition-colors"
-          >
-            Contact Us
-          </a>
-        </div>
-        <div class="text-center md:text-right">
-          <span class="text-dark">
-            © {new Date().getFullYear()}{" "}
+          Product
+        </h4>
+        <ul class="space-y-3">
+          <li>
             <a
-              href="https://willmisback.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-dark hover:text-primary-500 transition-colors"
+              href="/"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
             >
-              Misback Consulting
+              Free Audit
             </a>
-          </span>
-        </div>
+          </li>
+          <li>
+            <a
+              href="/changelog"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
+            >
+              Changelog (v2.0)
+            </a>
+          </li>
+          <!--
+          <li>
+            <a
+              href="/guarantee"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
+            >
+              Satisfaction Guarantee
+            </a>
+          </li>
+          -->
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h4
+          class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4"
+        >
+          Company
+        </h4>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/contact"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
+            >
+              Contact Us
+            </a>
+          </li>
+          <li>
+            <a
+              href="/privacy"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
+            >
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a
+              href="/terms"
+              class="text-sm text-slate-600 hover:text-[#00a979] transition-colors"
+            >
+              Terms of Service
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

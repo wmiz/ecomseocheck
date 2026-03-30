@@ -19,12 +19,12 @@ export async function GET({ url }) {
       changefreq: "monthly",
       lastmod: new Date().toISOString().split("T")[0]
     },
-    {
-      path: "/guarantee",
-      priority: "0.7",
-      changefreq: "monthly",
-      lastmod: new Date().toISOString().split("T")[0]
-    },
+    // {
+    //   path: "/guarantee",
+    //   priority: "0.7",
+    //   changefreq: "monthly",
+    //   lastmod: new Date().toISOString().split("T")[0]
+    // },
     {
       path: "/changelog",
       priority: "0.6",

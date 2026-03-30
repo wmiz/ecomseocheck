@@ -25,4 +25,12 @@
       <li>Audit export and reporting tools.</li>
     </ul>
   </section>
+
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-900">v2.0</h2>
+    <p class="text-sm text-gray-500 mb-3">Styling updates</p>
+    <ul class="list-disc list-inside space-y-1 text-gray-800">
+      <li>Improved overall look and feel with updated UI styling.</li>
+    </ul>
+  </section>
 </main>
