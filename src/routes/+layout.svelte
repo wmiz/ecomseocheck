@@ -70,12 +70,6 @@
 
       <!-- Nav Links -->
       <div class="flex items-center gap-1">
-        <a
-          href="/changelog"
-          class="hidden sm:inline-flex px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
-        >
-          Changelog
-        </a>
         <!--
         <a
           href="/guarantee"
