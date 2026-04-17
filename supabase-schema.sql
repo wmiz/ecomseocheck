@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS audit_requests (
   ip_address TEXT, -- Client IP address
   user_agent TEXT, -- Browser user agent
   recaptcha_score DECIMAL(3, 2), -- reCAPTCHA score if available
+  audit_file_url TEXT, -- Public URL of the exported audit workbook
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

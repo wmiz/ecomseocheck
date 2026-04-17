@@ -24,3 +24,33 @@ export function getSupabaseClient() {
     },
   });
 }
+
+const AUDIT_BUCKET = "audit-exports";
+
+/**
+ * Upload an audit workbook to the public `audit-exports` bucket and
+ * return its public URL.
+ *
+ * @param {Object} params
+ * @param {Buffer|Uint8Array} params.buffer
+ * @param {string} params.storeSlug - URL-safe identifier for filename
+ * @returns {Promise<string>} Public URL of the uploaded file
+ */
+export async function uploadAuditWorkbook({ buffer, storeSlug }) {
+  const supabase = getSupabaseClient();
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const path = `${storeSlug || "store"}/${timestamp}-catalog-audit.xlsx`;
+
+  const { error } = await supabase.storage.from(AUDIT_BUCKET).upload(path, buffer, {
+    contentType:
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    upsert: false,
+  });
+
+  if (error) {
+    throw new Error(`Supabase storage upload failed: ${error.message}`);
+  }
+
+  const { data } = supabase.storage.from(AUDIT_BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}

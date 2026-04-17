@@ -5,8 +5,12 @@ import { createAuditWorkbook } from "$lib/utils/auditExport.js";
 import { sendAuditEmails } from "$lib/utils/email.js";
 import {
   syncAuditLeadToLoops,
-  buildTopIssuesString,
+  buildTopIssuesCopy,
 } from "$lib/utils/loops.server.js";
+import {
+  getSupabaseClient,
+  uploadAuditWorkbook,
+} from "$lib/utils/supabase.server.js";
 
 /** @type {import("./$types").RequestHandler} */
 export const POST = async ({ request, fetch }) => {
@@ -16,6 +20,8 @@ export const POST = async ({ request, fetch }) => {
   const storeUrl = (formData.get("storeUrl") || "").toString().trim();
   const storeNameRaw = (formData.get("storeName") || "").toString().trim();
   const storeName = storeNameRaw || null;
+  const auditRequestId =
+    (formData.get("auditRequestId") || "").toString().trim() || null;
 
   if (!email) {
     throw fail(400, { error: "Email is required." });
@@ -76,6 +82,41 @@ export const POST = async ({ request, fetch }) => {
   // Artificial delay: finalizing export
   await new Promise((resolve) => setTimeout(resolve, 600));
 
+  const filenameSafeStore =
+    (auditResult.storeName || auditResult.storeUrl || "store")
+      .replace(/[^a-z0-9]+/gi, "-")
+      .toLowerCase() || "store";
+
+  // Upload the workbook to Supabase Storage so we can link to it from Loops.
+  let auditFileUrl = null;
+  try {
+    auditFileUrl = await uploadAuditWorkbook({
+      buffer: workbookBuffer,
+      storeSlug: filenameSafeStore,
+    });
+  } catch (error) {
+    console.error("Failed to upload audit workbook to Supabase Storage", error);
+  }
+
+  // Persist the file URL on the audit_requests row (best-effort).
+  if (auditFileUrl && auditRequestId) {
+    try {
+      const supabase = getSupabaseClient();
+      const { error: updateError } = await supabase
+        .from("audit_requests")
+        .update({ audit_file_url: auditFileUrl })
+        .eq("id", auditRequestId);
+      if (updateError) {
+        console.error(
+          "Failed to update audit_requests with file URL",
+          updateError
+        );
+      }
+    } catch (error) {
+      console.error("Error updating audit_requests with file URL", error);
+    }
+  }
+
   // Sync lead to Loops (non-blocking — don't fail the download if it fails).
   try {
     await syncAuditLeadToLoops({
@@ -83,7 +124,9 @@ export const POST = async ({ request, fetch }) => {
       storeUrl: auditResult.storeUrl,
       storeName: auditResult.storeName || storeName,
       score: Math.round(auditResult.report.summary.overallScore),
-      topIssues: buildTopIssuesString(auditResult.report),
+      totalIssues: auditResult.report.summary.totalIssues,
+      topIssues: buildTopIssuesCopy(auditResult.report),
+      auditFileUrl,
     });
   } catch (error) {
     console.error("Failed to sync audit lead to Loops", error);
@@ -103,11 +146,6 @@ export const POST = async ({ request, fetch }) => {
   } catch (error) {
     console.error("Failed to send audit emails", error);
   }
-
-  const filenameSafeStore =
-    (auditResult.storeName || auditResult.storeUrl || "store")
-      .replace(/[^a-z0-9]+/gi, "-")
-      .toLowerCase() || "store";
 
   return new Response(workbookBuffer, {
     status: 200,

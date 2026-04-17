@@ -250,27 +250,33 @@ export const actions = {
     }
 
     // Save audit data to Supabase (non-blocking - don't fail the request if this fails)
+    let auditRequestId = null;
     try {
       const supabase = getSupabaseClient();
       const userAgent = request.headers.get("user-agent") || null;
       const recaptchaScore = recaptchaResult?.score || null;
 
-      const { error: dbError } = await supabase.from("audit_requests").insert({
-        store_url: result.storeUrl,
-        store_name: result.storeName,
-        myshopify_domain: result.myshopifyDomain,
-        overall_score: Math.round(result.report.summary.overallScore),
-        total_issues: result.report.summary.totalIssues,
-        overall_grade: result.report.summary.overallGrade,
-        total_products: result.report.summary.totalProducts,
-        ip_address: clientIp,
-        user_agent: userAgent,
-        recaptcha_score: recaptchaScore,
-      });
+      const { data: insertedRow, error: dbError } = await supabase
+        .from("audit_requests")
+        .insert({
+          store_url: result.storeUrl,
+          store_name: result.storeName,
+          myshopify_domain: result.myshopifyDomain,
+          overall_score: Math.round(result.report.summary.overallScore),
+          total_issues: result.report.summary.totalIssues,
+          overall_grade: result.report.summary.overallGrade,
+          total_products: result.report.summary.totalProducts,
+          ip_address: clientIp,
+          user_agent: userAgent,
+          recaptcha_score: recaptchaScore,
+        })
+        .select("id")
+        .single();
 
       if (dbError) {
-        // Log error but don't fail the request
         console.error("Failed to save audit to Supabase:", dbError);
+      } else {
+        auditRequestId = insertedRow?.id ?? null;
       }
     } catch (error) {
       // Log error but don't fail the request
@@ -282,6 +288,7 @@ export const actions = {
       storeName: result.storeName ?? null,
       report: result.report,
       uplift: result.uplift ?? null,
+      auditRequestId,
     };
   },
 };

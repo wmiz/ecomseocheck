@@ -1012,6 +1012,7 @@
             >
               <input type="hidden" name="storeUrl" value={form?.storeUrl || storeUrl} />
               <input type="hidden" name="storeName" value={form?.storeName || storeName} />
+              <input type="hidden" name="auditRequestId" value={form?.auditRequestId ?? ""} />
 
               {#if downloadError}
                 <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-sm text-red-700">
