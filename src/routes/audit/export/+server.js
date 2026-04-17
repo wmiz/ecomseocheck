@@ -3,6 +3,10 @@ import { env } from "$env/dynamic/private";
 import { _buildCatalogAuditResult as buildCatalogAuditResult } from "../+page.server.js";
 import { createAuditWorkbook } from "$lib/utils/auditExport.js";
 import { sendAuditEmails } from "$lib/utils/email.js";
+import {
+  syncAuditLeadToLoops,
+  buildTopIssuesString,
+} from "$lib/utils/loops.server.js";
 
 /** @type {import("./$types").RequestHandler} */
 export const POST = async ({ request, fetch }) => {
@@ -71,6 +75,19 @@ export const POST = async ({ request, fetch }) => {
 
   // Artificial delay: finalizing export
   await new Promise((resolve) => setTimeout(resolve, 600));
+
+  // Sync lead to Loops (non-blocking — don't fail the download if it fails).
+  try {
+    await syncAuditLeadToLoops({
+      email,
+      storeUrl: auditResult.storeUrl,
+      storeName: auditResult.storeName || storeName,
+      score: Math.round(auditResult.report.summary.overallScore),
+      topIssues: buildTopIssuesString(auditResult.report),
+    });
+  } catch (error) {
+    console.error("Failed to sync audit lead to Loops", error);
+  }
 
   // Send emails but don't block the download if they fail.
   try {
